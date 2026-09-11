@@ -1,0 +1,49 @@
+{
+  
+  "name": "poo",
+  
+  "version": "1.0.0",
+  
+  "description": "",
+  
+  "main": "index.js",
+  
+  "scripts": {
+  
+    
+  "test": "echo \"Error: no test specified\" && exit 1"
+  
+  },
+  
+  "keywords": [],
+  
+  "author": "",
+  
+  "license": "ISC",
+  
+  "dependencies": {
+  
+    
+  "@inquirer/prompts": "^8.7.1",
+  
+    
+  "prompt-sync": "^4.2.0"
+  
+  },
+  
+  "devDependencies": {
+  
+    
+  "@types/node": "^26.4.1",
+  
+    
+  "@types/prompt-sync": "^4.2.3",
+  
+    
+  "tsx": "^4.23.13",
+  
+    
+  "typescript": "^7.0.2"
+  
+  }
+}
