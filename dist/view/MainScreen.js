@@ -12,8 +12,9 @@ class MainScreen {
     }
     OpenFisrtScreen() {
         let option = 0;
-        if (option != 3) {
-            option = Number(this.prompt("Digite:\n1. Para Cadastrar\n2. Para Listar\n3. Para sair\n"));
+        while (option != 3) {
+            console.log("Digite:\n1. Para Cadastrar\n2. Para Listar\n3. Para sair");
+            option = Number(this.prompt("> "));
             switch (option) {
                 case 1:
                     this.registerVinho();
@@ -21,18 +22,23 @@ class MainScreen {
                 case 2:
                     console.log(this.controller.getAllBebidas());
                     break;
+                case 3:
+                    console.clear();
+                    break;
                 default:
                     console.log("Digite um número de 1 a 3");
                     break;
             }
-            console.clear();
         }
     }
     registerVinho() {
         let vinho1 = this.controller.getNewVinho();
-        vinho1.setName(this.prompt("Qual o nome do vinho?\n"));
-        vinho1.setVol(Number(this.prompt("Qual o volume do vinho?\n")));
-        let kind = Number((this.prompt("Qual o tipo do vinho? \n1.Tinto \n2.Espumante\n3.rosé\n4.branco\n")));
+        console.log("Qual o nome do vinho?");
+        vinho1.setName(this.prompt("> "));
+        console.log("Qual o volume do vinho?");
+        vinho1.setVol(Number(this.prompt("> ")));
+        console.log("Qual o tipo do vinho? \n1.Tinto \n2.Espumante\n3.rosé\n4.branco");
+        let kind = Number((this.prompt("> ")));
         switch (kind) {
             case 1:
                 vinho1.setKind("tinto");
@@ -49,12 +55,17 @@ class MainScreen {
             default:
                 console.log("Insira um número válido");
         }
-        let flavour = this.prompt("Qual o tipo do vinho?\n" + "1 - Seco\n" + "2 - Suave\n");
-        if (flavour == "1") {
-            vinho1.setFlavour("seco");
-        }
-        else if (flavour == "2") {
-            vinho1.setFlavour("suave");
+        console.log("Qual o sabor do vinho?\n" + "1 - Seco\n" + "2 - Suave");
+        let flavour = Number(this.prompt("> "));
+        switch (flavour) {
+            case 1:
+                vinho1.setFlavour("seco");
+                break;
+            case 2:
+                vinho1.setFlavour("suave");
+                break;
+            default:
+                console.log("Insira um número vá");
         }
         this.controller.database.vinhos.push(vinho1);
     }
