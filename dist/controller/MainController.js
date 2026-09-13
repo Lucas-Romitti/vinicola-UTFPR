@@ -14,8 +14,12 @@ class MainController {
     getNewVinho() {
         return new Vinho_1.default("", 0, "tinto", "seco");
     }
-    getAllBebidas() {
-        return this.database.vinhos.join(", ");
+    getAllVinhos() {
+        let msg = "";
+        this.database.vinhos.forEach(vinho => {
+            msg += vinho.getName() + " " + "Vinho " + vinho.getKind() + " " + vinho.getFlavour() + " " + vinho.getVol() + "ml\n";
+        });
+        return msg;
     }
 }
 exports.default = MainController;

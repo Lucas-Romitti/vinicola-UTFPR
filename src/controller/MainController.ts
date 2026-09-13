@@ -14,7 +14,11 @@ export default class MainController {
         return new Vinho("", 0, "tinto", "seco");
     }
 
-    public getAllBebidas(): string{
-        return this.database.vinhos.join(", ")
+    public getAllVinhos(): string{
+        let msg = ""
+        this.database.vinhos.forEach(vinho => {
+            msg += "\n" + vinho.getName() + " " + "vinho "+ vinho.getKind() + " " + vinho.getFlavour() + " " + vinho.getVol() + "ml\n"
+        });
+        return msg
     }
 }

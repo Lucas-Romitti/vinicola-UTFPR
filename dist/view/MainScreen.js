@@ -20,7 +20,7 @@ class MainScreen {
                     this.registerVinho();
                     break;
                 case 2:
-                    console.log(this.controller.getAllBebidas());
+                    console.log(this.controller.getAllVinhos());
                     break;
                 case 3:
                     console.clear();
@@ -35,7 +35,7 @@ class MainScreen {
         let vinho1 = this.controller.getNewVinho();
         console.log("Qual o nome do vinho?");
         vinho1.setName(this.prompt("> "));
-        console.log("Qual o volume do vinho?");
+        console.log("Qual o volume do vinho? Em ml");
         vinho1.setVol(Number(this.prompt("> ")));
         console.log("Qual o tipo do vinho? \n1.Tinto \n2.Espumante\n3.rosé\n4.branco");
         let kind = Number((this.prompt("> ")));
