@@ -17,7 +17,7 @@ export default class MainController {
     public getAllVinhos(): string{
         let msg = ""
         this.database.vinhos.forEach(vinho => {
-            msg += "\n" + vinho.getName() + " " + "vinho "+ vinho.getKind() + " " + vinho.getFlavour() + " " + vinho.getVol() + "ml\n"
+            msg += vinho.description()
         });
         return msg
     }

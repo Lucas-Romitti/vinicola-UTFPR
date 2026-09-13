@@ -17,7 +17,7 @@ class MainController {
     getAllVinhos() {
         let msg = "";
         this.database.vinhos.forEach(vinho => {
-            msg += vinho.getName() + " " + "Vinho " + vinho.getKind() + " " + vinho.getFlavour() + " " + vinho.getVol() + "ml\n";
+            msg += vinho.description();
         });
         return msg;
     }
