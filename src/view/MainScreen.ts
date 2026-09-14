@@ -47,7 +47,7 @@ export default class MainScreen {
         vinho1.setName(this.prompt("> "));
         console.log("Qual o volume do vinho? Em ml")
         vinho1.setVol(Number(this.prompt("> ")));
-        console.log("Qual o tipo do vinho? \n1.Tinto \n2.Espumante\n3.rosé\n4.branco")
+        console.log("Qual o tipo do vinho? \n1 - Tinto \n2 - Espumante\n3 - Rosé\n4 - Branco")
         let kind = Number((this.prompt("> ")));
         switch(kind){
             case 1:

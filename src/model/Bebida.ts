@@ -16,6 +16,14 @@ export default class Bebida {
         this.name = name;
     }
 
+    public getQtt(): number{
+        return this.qtt
+    }
+
+    public setQtt(qtt:number): void{
+        this.qtt = qtt;
+    }
+
     public getVol(): number{
         return this.vol
     }
