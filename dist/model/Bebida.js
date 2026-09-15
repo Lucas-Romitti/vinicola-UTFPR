@@ -11,6 +11,12 @@ class Bebida {
     setName(name) {
         this.name = name;
     }
+    getQtt() {
+        return this.qtt;
+    }
+    setQtt(qtt) {
+        this.qtt = qtt;
+    }
     getVol() {
         return this.vol;
     }
