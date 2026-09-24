@@ -23,8 +23,5 @@ class Bebida {
     setVol(vol) {
         this.vol = vol;
     }
-    description() {
-        return this.getName() + " " + this.getVol() + "ml \n";
-    }
 }
 exports.default = Bebida;

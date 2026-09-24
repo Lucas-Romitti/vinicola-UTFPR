@@ -2,7 +2,7 @@ import Bebida from "./Bebida";
 
 export default class Vinho extends Bebida {
     private kind: "tinto" | "espumante" | "branco" | "rosé";
-    private flavour: "seco" | "suave"
+    private flavour: "seco" | "suave";
 
     constructor (name: string, vol:number ,kind: "tinto" | "espumante" | "branco" | "rosé", flavour: "seco" | "suave"){
     super(name, vol);

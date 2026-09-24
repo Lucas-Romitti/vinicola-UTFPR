@@ -1,4 +1,4 @@
-export default class Bebida {
+export default abstract class Bebida {
     private name:string;
     private qtt!:number; //coloca como metodo pra setar?
     private vol:number;
@@ -32,8 +32,5 @@ export default class Bebida {
         this.vol = vol;
     }
 
-    public description(): string{
-        return this.getName() + " " + this.getVol() + "ml \n"
-    }
-
+    abstract description(): {}
 }

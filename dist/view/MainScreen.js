@@ -55,7 +55,7 @@ class MainScreen {
             default:
                 console.log("Insira um número válido");
         }
-        console.log("Qual o sabor do vinho?\n" + "1 - Seco\n" + "2 - Suave");
+        console.log("Qual o sabor do vinho?\n1 - Seco\n2 - Suave");
         let flavour = Number(this.prompt("> "));
         switch (flavour) {
             case 1:
@@ -65,7 +65,7 @@ class MainScreen {
                 vinho1.setFlavour("suave");
                 break;
             default:
-                console.log("Insira um número vá");
+                console.log("Insira um número válido");
         }
         this.controller.database.vinhos.push(vinho1);
     }
