@@ -19,11 +19,29 @@ class MainController {
         return new Vinho_1.default("", 0, "tinto", "seco");
     }
     getAllVinhos() {
+        return this.database.vinhos;
+    }
+    getVinhosDescription(array) {
         let msg = "";
-        this.database.vinhos.forEach(vinho => {
+        array.forEach(vinho => {
             msg += vinho.description();
         });
         return msg;
+    }
+    getFilterVinhos(a) {
+        if (a === "seco" || a === "suave") {
+            return this.database.vinhos.filter(b => b.getFlavour() === a);
+        }
+        else if (a === "tinto" || a === "espumante" || a === "branco" || a === "rosé") {
+            return this.database.vinhos.filter(b => b.getKind() === a);
+        }
+        else if (typeof a === "string") {
+            return this.database.vinhos.filter(b => b.getName().trim().toLowerCase() === a.trim().toLowerCase());
+        }
+        else if (typeof a === "number") {
+            return this.database.vinhos.filter(b => b.getVol() === a);
+        }
+        return [];
     }
 }
 exports.default = MainController;

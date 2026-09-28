@@ -12,21 +12,24 @@ class MainScreen {
     }
     OpenFisrtScreen() {
         let option = 0;
-        while (option != 3) {
-            console.log("Digite:\n1. Para Cadastrar\n2. Para Listar\n3. Para sair");
+        while (option != 4) {
+            console.log("Digite:\n1. Para Cadastrar\n2. Para Listar\n3. Para Filtrar\n4. Para sair");
             option = Number(this.prompt("> "));
             switch (option) {
                 case 1:
                     this.registerVinho();
                     break;
                 case 2:
-                    console.log(this.controller.getAllVinhos());
+                    console.log(this.controller.getVinhosDescription(this.controller.getAllVinhos()));
                     break;
                 case 3:
+                    console.log(this.controller.getVinhosDescription(this.controller.getFilterVinhos(this.getFilter())));
+                    break;
+                case 4:
                     console.clear();
                     break;
                 default:
-                    console.log("Digite um número de 1 a 3");
+                    console.log("Digite um número de 1 a 4");
                     break;
             }
         }
@@ -68,6 +71,21 @@ class MainScreen {
                 console.log("Insira um número válido");
         }
         this.controller.database.vinhos.push(vinho1);
+    }
+    getFilter() {
+        let filter;
+        let n;
+        console.log("1. Pesquisar por: Nome/Tipo/Sabor\n2. Pesquisar por: Volume");
+        n = Number(this.prompt("> "));
+        if (n === 1) {
+            console.log("Insira o Nome/Tipo/Sabor");
+            filter = this.prompt("> ").toLowerCase();
+        }
+        else {
+            console.log("Insira o Volume");
+            filter = Number(this.prompt("> "));
+        }
+        return filter;
     }
 }
 exports.default = MainScreen;
