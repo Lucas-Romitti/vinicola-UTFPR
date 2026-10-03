@@ -31,7 +31,7 @@ export default class MainScreen {
 
                 case 3:
                 
-                console.log(this.controller.getVinhosDescription(this.controller.getFilterVinhos(this.getFilter())))
+                console.log(this.controller.getVinhosDescription(this.controller.getFilterVinhos(this.setFilter())))
                 break;
 
                 case 4:
@@ -49,27 +49,36 @@ export default class MainScreen {
 
     private registerVinho(){
         let vinho1 = this.controller.getNewVinho();
+        let a:number, b:number;
+        console.log("O vinho é espumante ou frisante?\n1 - Sim\n2 - Não")
+         a = Number((this.prompt("> ")));
+         if(a === 1 || a === 2){
+            console.log("Insira o tipo:\n1 - Espumante\n2 - Frisante")
+            b = Number(this.prompt("> "))
+            if(b === 1){
+                vinho1.setKind("espumante")
+            }
+            else if(b === 2){
+                vinho1.setKind("frisante")
+            }
+         }
         console.log("Qual o nome do vinho?");
         vinho1.setName(this.prompt("> "));
         console.log("Qual o volume do vinho? Em ml")
         vinho1.setVol(Number(this.prompt("> ")));
-        console.log("Qual o tipo do vinho? \n1 - Tinto \n2 - Espumante\n3 - Rosé\n4 - Branco")
-        let kind = Number((this.prompt("> ")));
-        switch(kind){
+        console.log("Qual a cor do vinho? \n1 - Tinto \n2 - Rosé\n3 - Branco")
+        let color = Number((this.prompt("> ")));
+        switch(color){
             case 1:
-                vinho1.setKind("tinto")
+                vinho1.setColor("tinto")
                 break;
 
             case 2:
-                vinho1.setKind("espumante")
+                vinho1.setColor("rosé")
                 break;
 
             case 3:
-                vinho1.setKind("rosé")
-                break;
-
-            case 4:
-                vinho1.setKind("branco")
+                vinho1.setColor("branco")
                 break;
 
             default:
@@ -95,12 +104,12 @@ export default class MainScreen {
 
     }
     
-    private getFilter(): string | number{
+    private setFilter(): string | number{
         let filter: string | number; let n : number
         console.log("1. Pesquisar por: Nome/Tipo/Sabor\n2. Pesquisar por: Volume")
         n = Number(this.prompt("> "))
         if(n === 1){
-            console.log("Insira o Nome/Tipo/Sabor")
+            console.log("Insira o Nome/Cor/Sabor")
             filter = this.prompt("> ").toLowerCase()
         }
         else{

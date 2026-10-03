@@ -32,5 +32,5 @@ export default abstract class Bebida {
         this.vol = vol;
     }
 
-    abstract description(): {}
+    abstract getDescription(): {}
 }

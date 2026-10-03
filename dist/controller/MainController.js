@@ -33,7 +33,7 @@ class MainController {
             return this.database.vinhos.filter(b => b.getFlavour() === a);
         }
         else if (a === "tinto" || a === "espumante" || a === "branco" || a === "rosé") {
-            return this.database.vinhos.filter(b => b.getKind() === a);
+            return this.database.vinhos.filter(b => b.getColor() === a);
         }
         else if (typeof a === "string") {
             return this.database.vinhos.filter(b => b.getName().trim().toLowerCase() === a.trim().toLowerCase());

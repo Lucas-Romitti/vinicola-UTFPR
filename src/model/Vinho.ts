@@ -1,21 +1,22 @@
 import Bebida from "./Bebida";
 
 export default class Vinho extends Bebida {
-    private kind: "tinto" | "espumante" | "branco" | "rosé";
+    private kind!: "espumante" | "frisante";
+    private color: "tinto" | "branco" | "rosé";
     private flavour: "seco" | "suave";
 
-    constructor (name: string, vol:number ,kind: "tinto" | "espumante" | "branco" | "rosé", flavour: "seco" | "suave"){
+    constructor (name: string, vol:number ,color: "tinto" | "branco" | "rosé", flavour: "seco" | "suave"){
     super(name, vol);
-    this.kind = kind;
+    this.color = color;
     this.flavour = flavour;
     }
 
-    public getKind(): string{
-    return this.kind
+    public getColor(): string{
+    return this.color
     }
 
-    public setKind(kind: "tinto" | "espumante" | "branco" | "rosé"): void {
-        this.kind = kind
+    public setColor(color: "tinto" | "branco" | "rosé"): void {
+        this.color = color
     }
 
     public getFlavour(): string{
@@ -26,8 +27,22 @@ export default class Vinho extends Bebida {
         this.flavour = flavour
     }
 
-    public description(): string{
-        return "Vinho " + this.getKind() + " "  + this.getFlavour() + " " + this.getName() + " " + this.getVol() + "ml\n"
+    public getKind(){
+        return this.kind
+    }
+
+    public setKind(kind: "espumante" | "frisante" ){
+        this.kind = kind
+    }
+
+    public getDescription(): string{
+        if(this.getKind() == "espumante"){
+            return "Vinho Espumante " + this.getColor() + " "  + this.getFlavour() + " " + this.getName() + " " + this.getVol() + "ml\n"
+        }
+        else if(this.getKind() == "frisante"){
+            return "Vinho Frisante " + this.getColor() + " "  + this.getFlavour() + " " + this.getName() + " " + this.getVol() + "ml\n"
+        }
+        return "Vinho " + this.getColor() + " "  + this.getFlavour() + " " + this.getName() + " " + this.getVol() + "ml\n"
 
     }
 }   

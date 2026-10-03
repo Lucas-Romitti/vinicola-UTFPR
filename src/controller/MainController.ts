@@ -28,22 +28,20 @@ export default class MainController {
     public getVinhosDescription(array: Vinho[]): string{
         let msg = ""
         array.forEach(vinho => {
-            msg += vinho.description()
+            msg += vinho.getDescription()
         });
         return msg
     }
 
     public getFilterVinhos(name: string): Vinho[];
-    public getFilterVinhos(kind: "tinto" | "espumante" | "branco" | "rosé"): Vinho[];
-    public getFilterVinhos(flavour: "seco" | "suave"): Vinho[];
     public getFilterVinhos(vol: number): Vinho[];
     public getFilterVinhos(a: string | number): Vinho[];
     public getFilterVinhos(a: string | number): Vinho[]{
         if (a === "seco" || a === "suave"){
             return this.database.vinhos.filter(b => b.getFlavour() === a)
         }
-        else if(a === "tinto" || a === "espumante" || a === "branco" || a === "rosé" ){
-            return this.database.vinhos.filter(b => b.getKind() === a)
+        else if(a === "tinto" || a === "branco" || a === "rosé" ){
+            return this.database.vinhos.filter(b => b.getColor() === a)
         }
         else if(typeof a === "string"){
             return this.database.vinhos.filter(b => b.getName().trim().toLowerCase() === a.trim().toLowerCase())
