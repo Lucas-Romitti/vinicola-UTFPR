@@ -1,21 +1,22 @@
 import Bebida from "./Bebida";
+import { ColorVinho } from "./enum/CorVinho";
 
 export default class Vinho extends Bebida {
     private kind!: "espumante" | "frisante";
-    private color: "tinto" | "branco" | "rosé";
+    private color: ColorVinho;
     private flavour: "seco" | "suave";
 
-    constructor (name: string, vol:number ,color: "tinto" | "branco" | "rosé", flavour: "seco" | "suave"){
+    constructor (name: string, vol:number ,color: ColorVinho, flavour: "seco" | "suave"){
     super(name, vol);
     this.color = color;
     this.flavour = flavour;
     }
 
-    public getColor(): string{
-    return this.color
+    public getColor(): string {
+    return ColorVinho[this.color]
     }
 
-    public setColor(color: "tinto" | "branco" | "rosé"): void {
+    public setColor(color: ColorVinho): void {
         this.color = color
     }
 

@@ -1,3 +1,5 @@
 import MainController from "./controller/MainController";
+import MainScreen from "./view/MainScreen";
 
-new MainController();
+const controller = new MainController();
+new MainScreen(controller)

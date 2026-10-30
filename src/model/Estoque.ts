@@ -1,8 +1,10 @@
-export default class Estoque {
-    private pratos:number;
-    private copos:number;
-    private tacas:number;
-    private talheres:number;
+import IEstoque from "./IEstoque";
+
+export default class Estoque implements IEstoque {
+    pratos:number;
+    copos:number;
+    tacas:number;
+    talheres:number;
 
     constructor(pratos:number, copos:number, tacas:number, talheres:number){
         this.pratos = pratos;

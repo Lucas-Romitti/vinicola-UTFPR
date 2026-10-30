@@ -2,10 +2,12 @@ import Vinho from "../model/Vinho";
 import Database from "../databases/Database";
 import MainScreen from "../view/MainScreen";
 import { number } from "@inquirer/prompts";
+import { ColorVinho } from "../model/enum/CorVinho";
+import FilterError from "../errors/FilterError";
 
-let vinhox = new Vinho("Pergola", 750, "tinto", "suave");
-let vinhoy = new Vinho("Del Piero", 750, "tinto", "suave");
-let vinhoz = new Vinho("Collina", 750, "rosé", "seco");
+let vinhox = new Vinho("Pergola", 750, ColorVinho.TINTO, "suave");
+let vinhoy = new Vinho("Del Piero", 750, ColorVinho.TINTO, "suave");
+let vinhoz = new Vinho("Collina", 750, ColorVinho.ROSE, "seco");
 
 
 export default class MainController {
@@ -14,11 +16,10 @@ export default class MainController {
     
     constructor(){
         this.database.vinhos.push(vinhox, vinhoy, vinhoz);
-        new MainScreen(this);
     }
 
     public getNewVinho(): Vinho{
-        return new Vinho("", 0, "tinto", "seco");
+        return new Vinho("", 0, ColorVinho.TINTO, "seco");
     }
 
     public getAllVinhos(): Vinho[]{
@@ -37,19 +38,19 @@ export default class MainController {
     public getFilterVinhos(vol: number): Vinho[];
     public getFilterVinhos(a: string | number): Vinho[];
     public getFilterVinhos(a: string | number): Vinho[]{
-        if (a === "seco" || a === "suave"){
-            return this.database.vinhos.filter(b => b.getFlavour() === a)
+            if (a === "seco" || a === "suave"){
+                return this.database.vinhos.filter(b => b.getFlavour() === a)
+            }
+            else if(a === ColorVinho[1] || a === ColorVinho[2] || a === ColorVinho[3] ){
+                return this.database.vinhos.filter(b => b.getColor() === a)
+            }
+            else if(typeof a === "string"){
+                return this.database.vinhos.filter(b => b.getName().trim().toLowerCase() === a.trim().toLowerCase())
+            }
+            else if(typeof a === "number"){
+                return this.database.vinhos.filter(b => b.getVol() === a)
+            }
+            throw new FilterError("")
         }
-        else if(a === "tinto" || a === "branco" || a === "rosé" ){
-            return this.database.vinhos.filter(b => b.getColor() === a)
-        }
-        else if(typeof a === "string"){
-            return this.database.vinhos.filter(b => b.getName().trim().toLowerCase() === a.trim().toLowerCase())
-        }
-        else if(typeof a === "number"){
-            return this.database.vinhos.filter(b => b.getVol() === a)
-        }
-        return []
-    }
 
-}
+    }

@@ -5,18 +5,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Vinho_1 = __importDefault(require("../model/Vinho"));
 const Database_1 = __importDefault(require("../databases/Database"));
-const MainScreen_1 = __importDefault(require("../view/MainScreen"));
-let vinhox = new Vinho_1.default("Pergola", 750, "tinto", "suave");
-let vinhoy = new Vinho_1.default("Del Piero", 750, "tinto", "suave");
-let vinhoz = new Vinho_1.default("Collina", 750, "rosé", "seco");
+const CorVinho_1 = require("../model/enum/CorVinho");
+const FilterError_1 = __importDefault(require("../errors/FilterError"));
+let vinhox = new Vinho_1.default("Pergola", 750, CorVinho_1.ColorVinho.TINTO, "suave");
+let vinhoy = new Vinho_1.default("Del Piero", 750, CorVinho_1.ColorVinho.TINTO, "suave");
+let vinhoz = new Vinho_1.default("Collina", 750, CorVinho_1.ColorVinho.ROSE, "seco");
 class MainController {
     constructor() {
         this.database = new Database_1.default;
         this.database.vinhos.push(vinhox, vinhoy, vinhoz);
-        new MainScreen_1.default(this);
     }
     getNewVinho() {
-        return new Vinho_1.default("", 0, "tinto", "seco");
+        return new Vinho_1.default("", 0, CorVinho_1.ColorVinho.TINTO, "seco");
     }
     getAllVinhos() {
         return this.database.vinhos;
@@ -24,7 +24,7 @@ class MainController {
     getVinhosDescription(array) {
         let msg = "";
         array.forEach(vinho => {
-            msg += vinho.description();
+            msg += vinho.getDescription();
         });
         return msg;
     }
@@ -32,7 +32,7 @@ class MainController {
         if (a === "seco" || a === "suave") {
             return this.database.vinhos.filter(b => b.getFlavour() === a);
         }
-        else if (a === "tinto" || a === "espumante" || a === "branco" || a === "rosé") {
+        else if (a === CorVinho_1.ColorVinho[1] || a === CorVinho_1.ColorVinho[2] || a === CorVinho_1.ColorVinho[3]) {
             return this.database.vinhos.filter(b => b.getColor() === a);
         }
         else if (typeof a === "string") {
@@ -41,7 +41,7 @@ class MainController {
         else if (typeof a === "number") {
             return this.database.vinhos.filter(b => b.getVol() === a);
         }
-        return [];
+        throw new FilterError_1.default("");
     }
 }
 exports.default = MainController;

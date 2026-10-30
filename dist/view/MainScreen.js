@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const prompt_sync_1 = __importDefault(require("prompt-sync"));
+const FilterError_1 = __importDefault(require("../errors/FilterError"));
 class MainScreen {
     constructor(controller) {
         this.prompt = (0, prompt_sync_1.default)();
@@ -23,7 +24,13 @@ class MainScreen {
                     console.log(this.controller.getVinhosDescription(this.controller.getAllVinhos()));
                     break;
                 case 3:
-                    console.log(this.controller.getVinhosDescription(this.controller.getFilterVinhos(this.setFilter())));
+                    try {
+                        console.log(this.controller.getVinhosDescription(this.controller.getFilterVinhos(this.setFilter())));
+                    }
+                    catch (error) {
+                        if (error instanceof FilterError_1.default)
+                            console.log(error.message);
+                    }
                     break;
                 case 4:
                     console.clear();
@@ -39,8 +46,8 @@ class MainScreen {
         let a, b;
         console.log("O vinho é espumante ou frisante?\n1 - Sim\n2 - Não");
         a = Number((this.prompt("> ")));
-        if (a === 1 || a === 2) {
-            console.log("Insira o tipo:\n1 - Espumante\n 2 - Frisante");
+        if (a === 1) {
+            console.log("Insira o tipo:\n1 - Espumante\n2 - Frisante");
             b = Number(this.prompt("> "));
             if (b === 1) {
                 vinho1.setKind("espumante");
@@ -57,13 +64,13 @@ class MainScreen {
         let color = Number((this.prompt("> ")));
         switch (color) {
             case 1:
-                vinho1.setColor("tinto");
+                vinho1.setColor(1);
                 break;
             case 2:
-                vinho1.setColor("rosé");
+                vinho1.setColor(2);
                 break;
             case 3:
-                vinho1.setColor("branco");
+                vinho1.setColor(3);
                 break;
             default:
                 console.log("Insira um número válido");

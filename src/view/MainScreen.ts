@@ -3,6 +3,7 @@ import promptSync from 'prompt-sync';
 import MainController from '../controller/MainController';
 import Database from '../databases/Database';
 import { number } from '@inquirer/prompts';
+import FilterError from '../errors/FilterError';
 
 export default class MainScreen {
 
@@ -30,8 +31,13 @@ export default class MainScreen {
                 break;
 
                 case 3:
-                
+                try{
                 console.log(this.controller.getVinhosDescription(this.controller.getFilterVinhos(this.setFilter())))
+                    }
+                catch(error){
+                    if(error instanceof FilterError)
+                    console.log(error.message)
+                }
                 break;
 
                 case 4:
@@ -52,7 +58,7 @@ export default class MainScreen {
         let a:number, b:number;
         console.log("O vinho é espumante ou frisante?\n1 - Sim\n2 - Não")
          a = Number((this.prompt("> ")));
-         if(a === 1 || a === 2){
+         if(a === 1){
             console.log("Insira o tipo:\n1 - Espumante\n2 - Frisante")
             b = Number(this.prompt("> "))
             if(b === 1){
@@ -70,15 +76,15 @@ export default class MainScreen {
         let color = Number((this.prompt("> ")));
         switch(color){
             case 1:
-                vinho1.setColor("tinto")
+                vinho1.setColor(1)
                 break;
 
             case 2:
-                vinho1.setColor("rosé")
+                vinho1.setColor(2)
                 break;
 
             case 3:
-                vinho1.setColor("branco")
+                vinho1.setColor(3)
                 break;
 
             default:

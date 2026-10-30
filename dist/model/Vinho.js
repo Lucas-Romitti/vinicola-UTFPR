@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Bebida_1 = __importDefault(require("./Bebida"));
+const CorVinho_1 = require("./enum/CorVinho");
 class Vinho extends Bebida_1.default {
     constructor(name, vol, color, flavour) {
         super(name, vol);
@@ -11,7 +12,7 @@ class Vinho extends Bebida_1.default {
         this.flavour = flavour;
     }
     getColor() {
-        return this.color;
+        return CorVinho_1.ColorVinho[this.color];
     }
     setColor(color) {
         this.color = color;
@@ -28,12 +29,12 @@ class Vinho extends Bebida_1.default {
     setKind(kind) {
         this.kind = kind;
     }
-    description() {
+    getDescription() {
         if (this.getKind() == "espumante") {
-            return "Vinho Espumante" + this.getColor() + " " + this.getFlavour() + " " + this.getName() + " " + this.getVol() + "ml\n";
+            return "Vinho Espumante " + this.getColor() + " " + this.getFlavour() + " " + this.getName() + " " + this.getVol() + "ml\n";
         }
         else if (this.getKind() == "frisante") {
-            return "Vinho Frisante" + this.getColor() + " " + this.getFlavour() + " " + this.getName() + " " + this.getVol() + "ml\n";
+            return "Vinho Frisante " + this.getColor() + " " + this.getFlavour() + " " + this.getName() + " " + this.getVol() + "ml\n";
         }
         return "Vinho " + this.getColor() + " " + this.getFlavour() + " " + this.getName() + " " + this.getVol() + "ml\n";
     }
