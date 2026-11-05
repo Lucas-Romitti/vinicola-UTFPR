@@ -38,19 +38,26 @@ export default class MainController {
     public getFilterVinhos(vol: number): Vinho[];
     public getFilterVinhos(a: string | number): Vinho[];
     public getFilterVinhos(a: string | number): Vinho[]{
+        let array: Vinho[] = [];
+
             if (a === "seco" || a === "suave"){
-                return this.database.vinhos.filter(b => b.getFlavour() === a)
+                array =  this.database.vinhos.filter(b => b.getFlavour() === a)
             }
             else if(a === ColorVinho[1] || a === ColorVinho[2] || a === ColorVinho[3] ){
-                return this.database.vinhos.filter(b => b.getColor() === a)
+                array = this.database.vinhos.filter(b => b.getColor() === a)
             }
             else if(typeof a === "string"){
-                return this.database.vinhos.filter(b => b.getName().trim().toLowerCase() === a.trim().toLowerCase())
+                array = this.database.vinhos.filter(b => b.getName().trim().toLowerCase() === a.trim().toLowerCase())
             }
             else if(typeof a === "number"){
-                return this.database.vinhos.filter(b => b.getVol() === a)
+                array = this.database.vinhos.filter(b => b.getVol() === a)
             }
+
+            if(array.length === 0) {
             throw new FilterError("")
+            }
+
+            return array
         }
 
     }

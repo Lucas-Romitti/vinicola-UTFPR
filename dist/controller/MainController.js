@@ -29,19 +29,23 @@ class MainController {
         return msg;
     }
     getFilterVinhos(a) {
+        let array = [];
         if (a === "seco" || a === "suave") {
-            return this.database.vinhos.filter(b => b.getFlavour() === a);
+            array = this.database.vinhos.filter(b => b.getFlavour() === a);
         }
         else if (a === CorVinho_1.ColorVinho[1] || a === CorVinho_1.ColorVinho[2] || a === CorVinho_1.ColorVinho[3]) {
-            return this.database.vinhos.filter(b => b.getColor() === a);
+            array = this.database.vinhos.filter(b => b.getColor() === a);
         }
         else if (typeof a === "string") {
-            return this.database.vinhos.filter(b => b.getName().trim().toLowerCase() === a.trim().toLowerCase());
+            array = this.database.vinhos.filter(b => b.getName().trim().toLowerCase() === a.trim().toLowerCase());
         }
         else if (typeof a === "number") {
-            return this.database.vinhos.filter(b => b.getVol() === a);
+            array = this.database.vinhos.filter(b => b.getVol() === a);
         }
-        throw new FilterError_1.default("");
+        if (array.length === 0) {
+            throw new FilterError_1.default("");
+        }
+        return array;
     }
 }
 exports.default = MainController;
